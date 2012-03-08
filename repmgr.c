@@ -1932,7 +1932,8 @@ create_schema(PGconn *conn)
 
 	/* an index to improve performance of the view */
 	sqlquery_snprintf(sqlquery, "CREATE INDEX idx_repl_status_sort "
-	                            "    ON %s.repl_monitor (last_monitor_time, standby_node) ");
+	                            "    ON %s.repl_monitor (last_monitor_time, standby_node) ",
+                          repmgr_schema);
 	log_debug(_("master register: %s\n"), sqlquery);
 	if (!PQexec(conn, sqlquery))
 	{
